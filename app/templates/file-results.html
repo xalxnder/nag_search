@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+{% block content %}
+
+<nav>
+    <h2><a href="/nag_search">Back To Search</a></h2>
+</nav>
+
+<table>
+    <tr>
+        <th>Host</th>
+        <th>Monitored</th>
+        <th>Environment</th>
+    </tr>
+    {% for host in RESULTS %}
+    <tr>
+        <td>{{ host['Host'] }}</td>
+        <td>{{ host['Monitored'] }}</td>
+        <td>{{ host['Environment'] }}</td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+
+
+
+{% endblock %}
+<!-- Where we pass the search term into the backend -->
+{% endblock %}

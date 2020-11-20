@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+<h1>Nagios Search</h1>
+
+
+<!-- <h1>Nagios Search</h1>
+    {% for host in matches %}
+    <p>Host Name: {{host}}</p>
+    {% endfor %} -->
+
+<!-- Where we pass the search term into the backend -->
+<form action="/nag_search" method="POST">
+    <input type="text" name="service" id="service">
+    <input type="submit" value="Search For Service">
+</form>
+
+<form action="/nag_search" method="POST">
+    <input type="text" name="host" id="host">
+    <input type="submit" value="Search For Host">
+</form>
+
+<div id ="file-upload">
+    &#x1F447
+    &#x1F447
+    &#x1F447
+    Need to search for multiple hosts? Upload a list of hostnames below. 
+    &#x1F447
+    &#x1F447
+    &#x1F447
+    
+
+
+<form action="/nag_search"  method="POST" enctype="multipart/form-data">
+    <input type="file"  name="text_file" id="text_file">
+    <input type="submit" value="Search For Multiple Hosts">
+</form> 
+
+</div>
+
+<div id='warning'>
+For the time being, please only upload ".txt" files.
+</div>
+
+
+{% endblock %}

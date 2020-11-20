@@ -1,0 +1,53 @@
+body,
+html {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+
+    text-align: center;
+}
+
+.content {
+    margin: 0 auto;
+    width: 400px;
+}
+
+table {
+    box-shadow: 3px 3px 8px 2px #888888;
+    border-radius: 5px;
+
+}
+
+th {
+    color: white;
+    background-color: #6F7BD9;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #F8F7FE;
+}
+
+table,
+th,
+td {
+    border-collapse: collapse;
+    /* border: 2px solid black; */
+    padding: 10px;
+    margin: 0 auto;
+
+}
+
+form {
+    margin: 10px;
+}
+
+#file-upload {
+    margin-top: 70px;
+
+}
+
+#warning {
+    color: red;
+    font-size: 12px;
+    font-weight: 700;
+}

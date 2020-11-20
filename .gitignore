@@ -1,0 +1,7 @@
+.venv
+.vscode
+Pipfile
+Pipfile.lock
+app/keys.py
+app/.env
+app/static/uploads
