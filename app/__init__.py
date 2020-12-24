@@ -9,6 +9,9 @@ UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 searchTool = Search()
 @app.route('/', methods=["POST", "GET"])
 def index():
@@ -20,13 +23,16 @@ def index():
         return redirect('/nag_search/results')
     elif request.method == "POST" and request.files:
         file = request.files['text_file']
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-        with open(os.path.join(
-                app.config['UPLOAD_FOLDER'], file.filename), 'r') as doc:
-            for line in doc:
-                stripped_line = line.strip()
-                searchTool.search_file(stripped_line)
-        return redirect('/nag_search/file-results')
+        if file and allowed_file(file.filename):
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+            with open(os.path.join(
+                    app.config['UPLOAD_FOLDER'], file.filename), 'r') as doc:
+                for line in doc:
+                    stripped_line = line.strip()
+                    searchTool.search_file(stripped_line)
+            return redirect('/nag_search/file-results')
+        else:
+            return render_template('index.html')
     elif request.method == "POST" and 'host' in request.form:
         host = request.form["host"]
         searchTool.search_host(host)
